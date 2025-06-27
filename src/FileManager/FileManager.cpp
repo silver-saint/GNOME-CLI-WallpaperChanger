@@ -31,7 +31,7 @@ std::string FileManager::GetFile()
     }
     std::cout << "Select a file" << std::endl;
     for (size_t i = 0; i < m_Files.size(); i++) { std::cout << i + 1 << ". " << m_Files[i] << std::endl; }
-    int32_t input;
+    size_t input;
     std::cout << m_Files.size() + 1 << ". Exit" << std::endl;
     std::cin >> input;
     if (input == m_Files.size() + 1) { return ""; }
