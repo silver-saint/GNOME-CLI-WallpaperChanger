@@ -1,4 +1,5 @@
 #include "FileManager.hpp"
+#include <print>
 #include <iostream>
 
 FileManager::FileManager(const std::filesystem::path& path) : m_Path(path)
@@ -15,7 +16,7 @@ void FileManager::ls()
 {
     for (const auto& entry: std::filesystem::directory_iterator(m_Path))
     {
-        std::cout << entry.path().filename() << std::endl;
+        std::println("{}", entry.path().filename());
     }
 }
 
@@ -29,14 +30,14 @@ std::string FileManager::GetFile()
             m_Files.push_back(file);
         }
     }
-    std::cout << "Select a file" << std::endl;
-    for (size_t i = 0; i < m_Files.size(); i++) { std::cout << i + 1 << ". " << m_Files[i] << std::endl; }
+    std::println("Select a file");
+    for (size_t i = 0; i < m_Files.size(); i++) { std::println("{} {}", i + 1, m_Files[i]); }
     size_t input;
-    std::cout << m_Files.size() + 1 << ". Exit" << std::endl;
+    std::println("{} {}", m_Files.size() + 1, ". Exit");
     std::cin >> input;
     if (input == m_Files.size() + 1) { return ""; }
-    std::cout << "Selected file: " << m_Files[input - 1] << std::endl;
+    std::println("Selected file: {}", m_Files[input - 1]);
     return m_Files[input - 1];
 }
 
-void FileManager::CWD() const { std::cout << m_Path.string() << std::endl; }
+void FileManager::CWD() const { std::print("{}", m_Path.string()); }

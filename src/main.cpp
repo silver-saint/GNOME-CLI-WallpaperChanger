@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <string>
 #include <optional>
+#include <print>
 
 std::optional<std::string> GetSystemPath(const std::string& path)
 {
@@ -32,7 +33,7 @@ int main()
                 std::ifstream saveDataContents(savePath.SaveDataPath());
                 if (!saveDataContents)
                 {
-                    std::cerr << "File not found: " << savePath.SaveDataPath() << "\n";
+                    std::println("File not found: {}", savePath.SaveDataPath());
                     return 1;
                 }
                 std::string contents;

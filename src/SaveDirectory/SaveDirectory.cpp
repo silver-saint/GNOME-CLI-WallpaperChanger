@@ -1,5 +1,5 @@
 #include "SaveDirectory.hpp"
-#include <iostream>
+#include <print>
 
 SaveDirectory::SaveDirectory(const std::string& fileName, const std::filesystem::path& path)
     : m_FileName(fileName), m_FilePath(path)
@@ -13,7 +13,7 @@ void SaveDirectory::WriteToFile(const std::string& data)
     std::ofstream savePath(m_FilePath / m_FileName, std::ios::app);
     if (!savePath)
     {
-        std::cerr << "Failed to open this file for writing" << std::endl;
+        std::println("Failed to open this file for writing");
         return;
     }
     savePath << data << std::endl;
