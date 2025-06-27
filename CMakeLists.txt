@@ -8,6 +8,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
     src/*.cpp
 )
+enable_testing()
+add_subdirectory(Vendor/googletest)
+# Recursively get all test .cpp files
+file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS "*.cpp")
+
+# Create test target
+add_executable(Tests ${TEST_SOURCES})
+
+# Link GoogleTest
+target_link_libraries(Tests gtest gtest_main)
 
 add_executable(Wallpaper ${SOURCES})
 target_compile_options(Wallpaper PRIVATE
