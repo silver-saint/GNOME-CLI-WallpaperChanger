@@ -5,56 +5,38 @@ project(Wallpaper LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Source files for main app
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
     src/*.cpp
 )
+
+# Enable testing
 enable_testing()
 add_subdirectory(Vendor/googletest)
-# Recursively get all test .cpp files
-file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS "*.cpp")
 
-# Create test target
+# Collect test sources only from tests directory
+file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS Tests/*.cpp)
+
+# Create test executable
 add_executable(Tests ${TEST_SOURCES})
+target_link_libraries(Tests PRIVATE gtest gtest_main)
 
-# Link GoogleTest
-target_link_libraries(Tests gtest gtest_main)
-
+# Your main application
 add_executable(Wallpaper ${SOURCES})
+
+# Compiler warnings and flags
 target_compile_options(Wallpaper PRIVATE
     $<$<CXX_COMPILER_ID:GNU>:
-        -Wall
-        -Wextra
-        -Wpedantic
-        -Wconversion
-        -Wsign-conversion
-        -Wshadow
-        -Wnull-dereference
-        -Wold-style-cast
-        -Wnon-virtual-dtor
-        -Woverloaded-virtual
-        -Wno-unused-parameter
-        -Werror
+        -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow
+        -Wnull-dereference -Wold-style-cast -Wnon-virtual-dtor
+        -Woverloaded-virtual -Wno-unused-parameter -Werror
     >
     $<$<CXX_COMPILER_ID:Clang>:
-        -Wall
-        -Wextra
-        -Wpedantic
-        -Wconversion
-        -Wsign-conversion
-        -Wshadow
-        -Wnull-dereference
-        -Wold-style-cast
-        -Wnon-virtual-dtor
-        -Woverloaded-virtual
-        -Wno-unused-parameter
-        -Werror
+        -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion -Wshadow
+        -Wnull-dereference -Wold-style-cast -Wnon-virtual-dtor
+        -Woverloaded-virtual -Wno-unused-parameter -Werror
     >
     $<$<CXX_COMPILER_ID:MSVC>:
-        /W4
-        /permissive-
-        /w44265   # uninitialized variables
-        /w44062   # possible null dereference
-        /WX       # treat warnings as errors
+        /W4 /permissive- /w44265 /w44062 /WX
     >
 )
-#target_include_directories(Wallpaper PRIVATE include)
