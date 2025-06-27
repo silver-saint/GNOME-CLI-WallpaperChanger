@@ -33,7 +33,7 @@ int main()
                 std::ifstream saveDataContents(savePath.SaveDataPath());
                 if (!saveDataContents)
                 {
-                    std::println("File not found: {}", savePath.SaveDataPath());
+                    std::println("File not found: {}", savePath.SaveDataPath().string());
                     return 1;
                 }
                 std::string contents;

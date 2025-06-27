@@ -16,7 +16,7 @@ void FileManager::ls()
 {
     for (const auto& entry: std::filesystem::directory_iterator(m_Path))
     {
-        std::println("{}", entry.path().filename());
+        std::println("{}", entry.path().filename().string());
     }
 }
 
