@@ -10,6 +10,7 @@ file(GLOB_RECURSE SOURCES
     Wallpaper/*.cpp
     FileManager/*.cpp
     Settings/*.cpp
+    SaveDirectory/*.cpp
 )
 
 add_executable(Wallpaper ${SOURCES})
