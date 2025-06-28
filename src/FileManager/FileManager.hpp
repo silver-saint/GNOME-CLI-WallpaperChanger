@@ -19,7 +19,7 @@ public:
 
 public:
     bool ChDir(const std::filesystem::path& newPath);
-    void ls();
+    bool ls();
     std::string GetFile();
 
 private:

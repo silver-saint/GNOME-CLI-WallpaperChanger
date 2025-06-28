@@ -20,12 +20,16 @@ bool FileManager::ChDir(const std::filesystem::path& newPath)
     return false;
 }
 
-void FileManager::ls()
+bool FileManager::ls()
 {
+    size_t fileCount = 0;
     for (const auto& entry: std::filesystem::directory_iterator(m_Path))
     {
         std::println("{}", entry.path().filename().string());
+        fileCount++;
     }
+    if (fileCount > 0) { return true; }
+    return false;
 }
 
 std::string FileManager::GetFile()

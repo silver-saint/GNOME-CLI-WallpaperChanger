@@ -20,3 +20,9 @@ TEST(FileManagerUT, GetCWD)
     FileManager fm(std::filesystem::current_path());
     EXPECT_EQ(fm.GetCWD(), path);
 }
+
+TEST(FileManagerUT, ls)
+{
+    FileManager fm(std::filesystem::current_path());
+    EXPECT_NE(fm.ls(), 0);
+}
