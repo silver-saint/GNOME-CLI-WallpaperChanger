@@ -10,7 +10,15 @@ FileManager::FileManager(const std::filesystem::path& path) : m_Path(path)
     }
 }
 
-void FileManager::ChDir(const std::filesystem::path& newPath) { m_Path = newPath; }
+bool FileManager::ChDir(const std::filesystem::path& newPath)
+{
+    if (!newPath.empty())
+    {
+        m_Path = newPath;
+        return true;
+    }
+    return false;
+}
 
 void FileManager::ls()
 {
@@ -40,4 +48,12 @@ std::string FileManager::GetFile()
     return m_Files[input - 1];
 }
 
-void FileManager::CWD() const { std::print("{}", m_Path.string()); }
+bool FileManager::CWD()
+{
+    if (!m_Path.empty())
+    {
+        std::print("Current Directory is: {}", m_Path.string());
+        return true;
+    }
+    return false;
+}
