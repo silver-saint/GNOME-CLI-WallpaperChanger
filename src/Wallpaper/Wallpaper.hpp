@@ -13,7 +13,7 @@ public:
     Wallpaper(const std::string& name);
 
 public:
-    void SetWallpaper(const std::string& wallpaperName, const std::string& path, BackgroundTheme theme);
+    bool SetWallpaper(const std::string& wallpaperName, const std::string& path, BackgroundTheme theme);
 
     std::string GetWallpaperName() const { return m_Name; }
 
